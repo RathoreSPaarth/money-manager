@@ -1,0 +1,122 @@
+<div class="jumbotron">
+  <h1 class="display-4">Hello, world!</h1>
+  <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Weekly')">Weekly</button>
+  <button class="tablinks" onclick="openCity(event, 'Monthly')">Monthly</button>
+  <button class="tablinks" onclick="openCity(event, 'Yearly')">Yeary</button>
+  <button class="tablinks" onclick="openCity(event, 'History')">History</button>
+</div>
+  {{!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured
+    content or information.</p> --}}
+  <hr class="my-4">
+  <div id="Monthly" class="tabcontent">
+  
+      <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Month</th>
+      <th scope="col">Income</th>
+    </tr>
+  </thead>
+  <tbody>
+     {{#each monthlyIncome}}
+    <tr>
+      <th scope="row">{{@key}}</th>
+      <td>{{this}}</td>
+    </tr>
+     {{/each}}
+  </tbody>
+</table>
+
+   <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Month</th>
+      <th scope="col">Expenditure</th>
+    </tr>
+  </thead>
+  <tbody>
+     {{#each monthlyExpenditure}}
+    <tr>
+      <th scope="row">{{@key}}</th>
+      <td>{{this}}</td>
+    </tr>
+     {{/each}}
+  </tbody>
+</table>
+  
+  </div>
+
+   <div id="Weekly" class="tabcontent">
+     <p>
+   weekly income : {{incomeSumWeekly}}
+  </p>
+
+  <p>
+   weekly expenditure : {{expenditureSumWeekly}}
+  </p>
+  </div>
+
+   <div id="Yearly" class="tabcontent">
+       <p>
+   Yearly income : {{incomeSum}}
+  </p>
+
+  <p>
+   Yearly expenditure : {{expenditureSum}}
+  </p>
+  </div>
+
+  <div id="History" class="tabcontent">
+     <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Type</th>
+      <th scope="col">DD</th>
+      <th scope="col">MM</th>
+      <th scope="col">YY</th>
+    </tr>
+  </thead>
+  <tbody>
+     {{#each history}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.amount}}</td>
+      <td>{{this.type}}</td>
+      <td>{{this.date}}</td>
+      <td>{{this.month}}</td>
+      <td>{{this.year}}</td>
+    </tr>
+     {{/each}}
+  </tbody>
+</table>
+  </div>
+ 
+  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
+
+{{!--  --}}
+<script>
+  function openCity(evt, duration) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(duration).style.display = "block";
+  evt.currentTarget.className += " active";
+} 
+</script>
